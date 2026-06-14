@@ -8,10 +8,11 @@ $(function() {
 
     $.get('assets/words.json', function(data) {
         palavras = data;
-        gerarPalavra();
+        novaPalavra();
+        iniciarCronometro();
     });
 
-    function gerarPalavra() {
+    function novaPalavra() {
         const indice = Math.floor(Math.random() * palavras.length);
         const palavra = palavras[indice];
 
@@ -20,8 +21,6 @@ $(function() {
         palavra.proibidas.forEach(function(proibida) {
             $palavras.append(`<div class="proibida">${proibida}</div>`);
         });
-
-        iniciarCronometro();
     }
 
     function iniciarCronometro() {
@@ -46,9 +45,13 @@ $(function() {
         }, 1000);
     }
 
-    $('.resetar').click(function() {
+    function resetarCronometro() {
         clearInterval(cronometro);
-        gerarPalavra();
-    });
+        iniciarCronometro();
+    }
+
+    $('.btn-resetar').click(resetarCronometro);
+
+    $('.btn-nova').click(novaPalavra);
 
 });

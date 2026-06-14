@@ -4,16 +4,17 @@ body {
 
 .container {
     width: 100%;
-    height: 100dvh;
+    min-height: 100dvh;
     display: flex;
     align-items: stretch;
     justify-content: center;
     flex-direction: column;
     gap: 20px;
+    padding-block: 10px;
 }
 
 .cronometro {
-    font-size: 70px;
+    font-size: 45px;
     text-align: center;
     font-weight: 700;
 }
@@ -28,8 +29,8 @@ body {
     background: #febd04;
     color: black;
     font-weight: 700;
-    padding: 20px;
-    font-size: 22px;
+    padding: 15px;
+    font-size: 18px;
     text-align: center;
     border: 3px solid black;
     border-radius: 10px;
@@ -39,6 +40,15 @@ body {
 .palavras .resposta {
     background: #018ce9;
     color: white;
-    font-size: 28px;
+    font-size: 22px;
     font-weight: 900;
+}
+
+.botoes {
+    display: flex;
+    gap: 10px;
+}
+
+.botoes button {
+    width: 100%;
 }
