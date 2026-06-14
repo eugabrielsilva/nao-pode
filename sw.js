@@ -1,0 +1,90 @@
+const CACHE = "nao-pode-0.0.1";
+const APP_SHELL = [
+    "./",
+    "./assets/",
+    "./assets/bootstrap.min.css",
+    "./assets/icon.png",
+    "./assets/jquery.min.js",
+    "./assets/script.js",
+    "./assets/style.css",
+    "./assets/words.json",
+    "./index.html",
+    "./sw.js",
+];
+
+self.addEventListener("install", event => {
+    event.waitUntil(
+        caches.open(CACHE).then(cache => cache.addAll(APP_SHELL)).then(() => self.skipWaiting())
+    );
+});
+
+self.addEventListener("activate", event => {
+    event.waitUntil(
+        caches.keys().then(keys => {
+            return Promise.all(
+                keys.filter(key => key !== CACHE).map(key => caches.delete(key))
+            );
+        }).then(() => self.clients.claim())
+    );
+});
+
+self.addEventListener("fetch", event => {
+    const {request} = event;
+
+    if(request.method !== "GET") return;
+    if(request.cache === "only-if-cached" && request.mode !== "same-origin") return;
+
+    if(request.headers.has("range")) {
+        event.respondWith(fetch(request));
+        return;
+    }
+
+    const url = new URL(request.url);
+
+    if(request.mode === "navigate") {
+        event.respondWith(
+            fetch(request)
+                .then(response => {
+                    if(response && response.status === 200) {
+                        const responseClone = response.clone();
+                        caches.open(CACHE).then(cache => {
+                            cache.put("./index.html", responseClone);
+                        });
+                    }
+
+                    return response;
+                })
+                .catch(async () => {
+                    const cachedPage = await caches.match(request);
+                    if(cachedPage) return cachedPage;
+
+                    return caches.match("./index.html");
+                })
+        );
+
+        return;
+    }
+
+    if(url.origin !== self.location.origin) {
+        return;
+    }
+
+    event.respondWith(
+        caches.match(request).then(cached => {
+            const networkFetch = fetch(request)
+                .then(response => {
+                    if(response && response.status === 200 && response.type === "basic") {
+                        const responseClone = response.clone();
+                        caches.open(CACHE).then(cache => {
+                            cache.put(request, responseClone);
+                        });
+                    }
+
+                    return response;
+                })
+                .catch(() => cached || Response.error());
+
+            return cached || networkFetch;
+        })
+    );
+});
