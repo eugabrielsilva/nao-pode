@@ -21,10 +21,11 @@ html,
 body {
     touch-action: manipulation;
     overscroll-behavior: none;
+    overflow: hidden;
 }
 
 .container {
-    height: 100vh;
+    height: 100dvh;
     display: flex;
     align-items: stretch;
     justify-content: center;
@@ -32,6 +33,7 @@ body {
     gap: 1.25rem;
     padding-block: 0.625rem;
     max-width: 500px;
+    overflow: hidden;
 }
 
 .card {
