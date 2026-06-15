@@ -3,21 +3,52 @@
 
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no, maximum-scale=1, minimum-scale=1, viewport-fit=cover">
         <title>Não Pode!</title>
+        <meta name="theme-color" content="#f0f0f0">
+        <meta name="background-color" content="#f0f0f0">
+        <link rel="manifest" href="manifest.json">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-title" content="Não Pode!">
+        <link rel="apple-touch-icon" href="assets/icon.png">
+        <link rel="icon" href="assets/icon.png">
+        <link rel="shortcut icon" href="assets/icon.png">
+        <link rel="apple-touch-icon" href="assets/icon.png">
         <link rel="stylesheet" href="assets/bootstrap.min.css">
         <link rel="stylesheet" href="assets/style.css">
-        <link rel="shortcut icon" href="assets/icon.png">
+        <meta property="og:title" content="Não Pode!">
+        <meta property="og:description" content="Jogo de adivinhação de palavras para jogar com amigos!">
+        <meta property="og:image" content="assets/icon.png">
+        <meta property="og:image:width" content="256">
+        <meta property="og:image:height" content="256">
+        <meta property="og:image:type" content="image/png">
     </head>
 
     <body>
-        <div class="container">
+        <div class="container start-container">
+            <h1>Não Pode!</h1>
+            <p>👍 O objetivo do jogo é fazer seu time adivinhar o máximo de palavras em <span class="azul">azul</span> antes que o tempo acabe, porém sem usar nenhuma das <span class="amarelo">palavras proibidas</span></p>
+            <p>👎 <strong>Não pode</strong> usar gestos, mímicas, onomatopéias, sons ou palavras em outros idiomas para descrever a resposta.</p>
+            <p>👎 <strong>Não pode</strong> usar derivações das palavras proibidas ou da resposta em si (ex: "futebol" - "futebolista", "cantor" - "cantar", "Brasil" - "brasileiro", etc.)</p>
+            <p><strong>Clique no botão abaixo para iniciar o jogo!</strong></p>
+            <button class="btn btn-outline-success btn-iniciar">Iniciar jogo</button>
+        </div>
+
+        <div class="container game-container d-none">
             <div class="cronometro">60</div>
+            <p>Pontos: <span class="pontuacao">0</span></p>
             <div class="palavras"></div>
             <div class="botoes">
-                <button class="btn btn-outline-secondary btn-nova">Nova palavra</button>
-                <button class="btn btn-outline-secondary btn-resetar">Resetar cronômetro</button>
+                <button class="btn btn-outline-success btn-proxima">Próxima palavra</button>
+                <button class="btn btn-outline-danger btn-encerrar">Encerrar jogo</button>
             </div>
+        </div>
+
+        <div class="container end-container d-none">
+            <h1>Fim de jogo!</h1>
+            <p>Pontuação final: <span class="pontuacao">0</span></p>
+            <button class="btn btn-outline-success btn-iniciar">Novo jogo</button>
         </div>
 
         <script src="assets/jquery.min.js"></script>

@@ -1,18 +1,21 @@
 $(function() {
 
     let palavras = [];
+    let pontos = 0;
     let cronometro;
 
     const $palavras = $('.palavras');
     const $cronometro = $('.cronometro');
+    const $gameContainer = $('.game-container');
+    const $startContainer = $('.start-container');
+    const $endContainer = $('.end-container');
+    const $pontuacao = $('.pontuacao');
 
     $.get('assets/words.json', function(data) {
         palavras = data;
-        novaPalavra();
-        iniciarCronometro();
     });
 
-    function novaPalavra() {
+    function proximaPalavra() {
         const indice = Math.floor(Math.random() * palavras.length);
         const palavra = palavras[indice];
 
@@ -21,6 +24,9 @@ $(function() {
         palavra.proibidas.forEach(function(proibida) {
             $palavras.append(`<div class="proibida">${proibida}</div>`);
         });
+
+        pontos++;
+        $pontuacao.text(pontos);
     }
 
     function iniciarCronometro() {
@@ -40,18 +46,32 @@ $(function() {
             }
 
             if(tempo <= 0) {
-                clearInterval(cronometro);
+                encerrarJogo();
             }
         }, 1000);
     }
 
-    function resetarCronometro() {
+    function encerrarJogo() {
         clearInterval(cronometro);
+        $gameContainer.addClass('d-none');
+        $endContainer.removeClass('d-none');
+        $pontuacao.text(pontos);
+    }
+
+    function iniciarJogo() {
+        $startContainer.addClass('d-none');
+        $endContainer.addClass('d-none');
+        $gameContainer.removeClass('d-none');
+        proximaPalavra();
+        pontos = 0;
+        $pontuacao.text(pontos);
         iniciarCronometro();
     }
 
-    $('.btn-resetar').click(resetarCronometro);
+    $('.btn-iniciar').click(iniciarJogo);
 
-    $('.btn-nova').click(novaPalavra);
+    $('.btn-proxima').click(proximaPalavra);
+
+    $('.btn-encerrar').click(encerrarJogo);
 
 });

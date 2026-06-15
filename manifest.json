@@ -1,0 +1,16 @@
+{
+    "name": "Não Pode!",
+    "short_name": "Não Pode!",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#f0f0f0",
+    "theme_color": "#f0f0f0",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "assets/icon.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        }
+    ]
+}

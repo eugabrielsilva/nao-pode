@@ -11,6 +11,44 @@ body {
     flex-direction: column;
     gap: 20px;
     padding-block: 10px;
+    max-width: 500px;
+}
+
+h1 {
+    text-align: center;
+    font-weight: 900;
+}
+
+p {
+    text-align: center;
+    margin: 0;
+    font-weight: 500;
+}
+
+.azul {
+    background: #018ce9;
+    display: inline-block;
+    padding: 2px 7px;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 900;
+    border-radius: 5px;
+    box-shadow: 2px 2px black;
+    border: 2px solid black;
+    margin: 0 2px;
+}
+
+.amarelo {
+    background: #febd04;
+    display: inline-block;
+    padding: 2px 7px;
+    color: black;
+    text-transform: uppercase;
+    font-weight: 900;
+    border-radius: 5px;
+    box-shadow: 2px 2px black;
+    border: 2px solid black;
+    margin: 0 2px;
 }
 
 .cronometro {
@@ -51,4 +89,9 @@ body {
 
 .botoes button {
     width: 100%;
+}
+
+.pontuacao {
+    color: #018ce9;
+    font-weight: 900;
 }
