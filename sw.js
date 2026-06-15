@@ -1,4 +1,4 @@
-const CACHE = "nao-pode-0.0.3";
+const CACHE = "nao-pode-0.0.4";
 const APP_SHELL = [
     "./",
     "./assets/",
