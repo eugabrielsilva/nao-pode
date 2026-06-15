@@ -2,7 +2,7 @@ $(function() {
 
     let palavras = [];
     let pontos = 0;
-    let cronometro;
+    let cronometro = null;
 
     const $palavras = $('.palavras');
     const $cronometro = $('.cronometro');
@@ -13,12 +13,23 @@ $(function() {
 
     $.get('assets/words.json', function(data) {
         palavras = data;
+        shuffle(palavras);
     });
 
-    function proximaPalavra(aumentarPontos = true) {
-        const indice = Math.floor(Math.random() * palavras.length);
-        const palavra = palavras[indice];
+    function shuffle(array) {
+        for(let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
 
+    function proximaPalavra(aumentarPontos = true) {
+        if(palavras.length === 0) {
+            encerrarJogo();
+            return;
+        }
+
+        const palavra = palavras.pop();
         $palavras.empty().append(`<div class="resposta">${palavra.resposta}</div>`);
 
         palavra.proibidas.forEach(function(proibida) {
@@ -34,7 +45,7 @@ $(function() {
 
     function iniciarCronometro() {
         let tempo = 60;
-        $cronometro.removeClass('text-danger').removeClass('text-warning').addClass('text-success').text(tempo);
+        $cronometro.removeClass('blink text-danger text-warning').addClass('text-success').text(tempo);
 
         cronometro = setInterval(function() {
             tempo--;
@@ -45,7 +56,7 @@ $(function() {
             }
 
             if(tempo === 10) {
-                $cronometro.removeClass('text-warning').addClass('text-danger');
+                $cronometro.removeClass('text-warning').addClass('blink text-danger');
             }
 
             if(tempo <= 0) {
@@ -55,7 +66,10 @@ $(function() {
     }
 
     function encerrarJogo() {
-        clearInterval(cronometro);
+        if(cronometro) {
+            clearInterval(cronometro);
+        }
+
         $gameContainer.addClass('d-none');
         $endContainer.removeClass('d-none');
     }

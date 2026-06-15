@@ -1,4 +1,4 @@
-const CACHE = "nao-pode-0.0.5";
+const CACHE = "nao-pode-0.0.6";
 const APP_SHELL = [
     "./index.html",
     "./manifest.json",
