@@ -15,7 +15,7 @@ $(function() {
         palavras = data;
     });
 
-    function proximaPalavra() {
+    function proximaPalavra(aumentarPontos = true) {
         const indice = Math.floor(Math.random() * palavras.length);
         const palavra = palavras[indice];
 
@@ -25,7 +25,10 @@ $(function() {
             $palavras.append(`<div class="proibida">${proibida}</div>`);
         });
 
-        pontos++;
+        if(aumentarPontos) {
+            pontos++;
+        }
+
         $pontuacao.text(pontos);
     }
 
@@ -55,17 +58,19 @@ $(function() {
         clearInterval(cronometro);
         $gameContainer.addClass('d-none');
         $endContainer.removeClass('d-none');
-        $pontuacao.text(pontos);
     }
 
     function iniciarJogo() {
         $startContainer.addClass('d-none');
         $endContainer.addClass('d-none');
         $gameContainer.removeClass('d-none');
-        proximaPalavra();
         pontos = 0;
-        $pontuacao.text(pontos);
+        proximaPalavra(false);
         iniciarCronometro();
+    }
+
+    function resize() {
+        $('html').css('font-size', ((window.innerHeight / 960) * 16 * 1.1) + 'px');
     }
 
     $('.btn-iniciar').click(iniciarJogo);
@@ -73,6 +78,10 @@ $(function() {
     $('.btn-proxima').click(proximaPalavra);
 
     $('.btn-encerrar').click(encerrarJogo);
+
+    window.onresize = resize;
+
+    resize();
 
 });
 

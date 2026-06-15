@@ -29,8 +29,8 @@ body {
     align-items: stretch;
     justify-content: center;
     flex-direction: column;
-    gap: 20px;
-    padding-block: 10px;
+    gap: 1.25rem;
+    padding-block: 0.625rem;
     max-width: 500px;
 }
 
@@ -48,31 +48,31 @@ p {
 .azul {
     background: #018ce9;
     display: inline-block;
-    padding: 2px 7px;
+    padding: 0.125rem 0.4375rem;
     color: white;
     text-transform: uppercase;
     font-weight: 900;
     border-radius: 5px;
     box-shadow: 2px 2px black;
     border: 2px solid black;
-    margin: 0 2px;
+    margin: 0 0.125rem;
 }
 
 .amarelo {
     background: #febd04;
     display: inline-block;
-    padding: 2px 7px;
+    padding: 0.125rem 0.4375rem;
     color: black;
     text-transform: uppercase;
     font-weight: 900;
     border-radius: 5px;
     box-shadow: 2px 2px black;
     border: 2px solid black;
-    margin: 0 2px;
+    margin: 0 0.125rem;
 }
 
 .cronometro {
-    font-size: 45px;
+    font-size: 2.8125rem;
     text-align: center;
     font-weight: 700;
 }
@@ -80,15 +80,15 @@ p {
 .palavras {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 0.9375rem;
 }
 
 .palavras div {
     background: #febd04;
     color: black;
     font-weight: 700;
-    padding: 15px;
-    font-size: 18px;
+    padding: 0.9375rem;
+    font-size: 1.125rem;
     text-align: center;
     border: 3px solid black;
     border-radius: 10px;
@@ -98,7 +98,7 @@ p {
 .palavras .resposta {
     background: #018ce9;
     color: white;
-    font-size: 22px;
+    font-size: 1.375rem;
     font-weight: 900;
 }
 

@@ -1,16 +1,14 @@
-const CACHE = "nao-pode-0.0.4";
+const CACHE = "nao-pode-0.0.5";
 const APP_SHELL = [
-    "./",
-    "./assets/",
+    "./index.html",
+    "./manifest.json",
+    "./sw.js",
     "./assets/bootstrap.min.css",
     "./assets/icon.png",
     "./assets/jquery.min.js",
     "./assets/script.js",
     "./assets/style.css",
     "./assets/words.json",
-    "./index.html",
-    "./manifest.json",
-    "./sw.js",
 ];
 
 self.addEventListener("install", event => {
