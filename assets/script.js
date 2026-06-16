@@ -10,6 +10,7 @@ $(function() {
     const $startContainer = $('.start-container');
     const $endContainer = $('.end-container');
     const $pontuacao = $('.pontuacao');
+    const $seletorTempo = $('.seletor-tempo');
 
     $.get('assets/words.json', function(data) {
         palavras = data;
@@ -44,23 +45,19 @@ $(function() {
     }
 
     function iniciarCronometro() {
-        let tempo = 60;
+        let tempo = parseInt($seletorTempo.val());
         $cronometro.removeClass('blink text-danger text-warning').addClass('text-success').text(tempo);
 
         cronometro = setInterval(function() {
             tempo--;
             $cronometro.text(tempo);
 
-            if(tempo === 30) {
-                $cronometro.removeClass('text-success').addClass('text-warning');
-            }
-
-            if(tempo === 10) {
-                $cronometro.removeClass('text-warning').addClass('blink text-danger');
-            }
-
             if(tempo <= 0) {
                 encerrarJogo();
+            } else if(tempo <= 10) {
+                $cronometro.removeClass('text-success text-warning').addClass('blink text-danger');
+            } else if(tempo <= 30) {
+                $cronometro.removeClass('text-success blink text-danger').addClass('text-warning');
             }
         }, 1000);
     }
@@ -75,12 +72,16 @@ $(function() {
     }
 
     function iniciarJogo() {
-        $startContainer.addClass('d-none');
-        $endContainer.addClass('d-none');
-        $gameContainer.removeClass('d-none');
         pontos = 0;
+        $startContainer.addClass('d-none');
+        $gameContainer.removeClass('d-none');
         proximaPalavra(false);
         iniciarCronometro();
+    }
+
+    function novoJogo() {
+        $endContainer.addClass('d-none');
+        $startContainer.removeClass('d-none');
     }
 
     function resize() {
@@ -92,6 +93,8 @@ $(function() {
     $('.btn-proxima').click(proximaPalavra);
 
     $('.btn-encerrar').click(encerrarJogo);
+
+    $('.btn-novo').click(novoJogo);
 
     window.onresize = resize;
 

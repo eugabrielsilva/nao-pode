@@ -147,6 +147,10 @@ p {
     font-weight: 900;
 }
 
+.seletor-tempo {
+    text-align: center;
+}
+
 @keyframes blink {
     0% {
         opacity: 1;

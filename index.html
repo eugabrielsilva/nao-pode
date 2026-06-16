@@ -39,6 +39,13 @@
                 <p>👎 <strong>Não pode</strong> usar derivações das palavras proibidas ou da resposta em si (ex: "futebol" - "futebolista", "cantor" - "cantar", "Brasil" - "brasileiro", etc.)</p>
                 <p class="text-success"><strong>Clique no botão abaixo para iniciar o jogo!</strong></p>
                 <button class="btn btn-outline-success btn-iniciar">Iniciar jogo</button>
+                <select class="form-select seletor-tempo">
+                    <option value="30">Tempo: 30 segundos</option>
+                    <option value="45">Tempo: 45 segundos</option>
+                    <option value="60" selected>Tempo: 60 segundos</option>
+                    <option value="90">Tempo: 90 segundos</option>
+                    <option value="120">Tempo: 120 segundos</option>
+                </select>
             </div>
         </div>
 
@@ -56,7 +63,7 @@
             <div class="card">
                 <h1 class="text-danger">Fim de jogo!</h1>
                 <p>Pontuação final: <span class="pontuacao">0</span></p>
-                <button class="btn btn-outline-success btn-iniciar">Novo jogo</button>
+                <button class="btn btn-outline-success btn-novo">Novo jogo</button>
             </div>
         </div>
 
