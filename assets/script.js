@@ -44,13 +44,23 @@ $(function() {
         $pontuacao.text(pontos);
     }
 
+    function formatarTempo(tempo) {
+        if(tempo <= 60) {
+            return tempo;
+        }
+
+        let minutos = Math.floor(tempo / 60);
+        let segundos = (tempo % 60).toString().padStart(2, '0');
+        return `${minutos}:${segundos}`;
+    }
+
     function iniciarCronometro() {
         let tempo = parseInt($seletorTempo.val());
-        $cronometro.removeClass('blink text-danger text-warning').addClass('text-success').text(tempo);
+        $cronometro.removeClass('blink text-danger text-warning').addClass('text-success').text(formatarTempo(tempo));
 
         cronometro = setInterval(function() {
             tempo--;
-            $cronometro.text(tempo);
+            $cronometro.text(formatarTempo(tempo));
 
             if(tempo <= 0) {
                 encerrarJogo();
@@ -91,6 +101,10 @@ $(function() {
     $('.btn-iniciar').click(iniciarJogo);
 
     $('.btn-proxima').click(proximaPalavra);
+
+    $('.btn-pular').click(function() {
+        proximaPalavra(false);
+    });
 
     $('.btn-encerrar').click(encerrarJogo);
 
